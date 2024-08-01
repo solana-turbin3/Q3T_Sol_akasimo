@@ -1,5 +1,5 @@
-import { Keypair, Connection, Commitment } from "@solana/web3.js";
-import { createMint } from '@solana/spl-token';
+import { Keypair, Connection, Commitment, PublicKey } from "@solana/web3.js";
+import { createMint, getOrCreateAssociatedTokenAccount, mintTo } from '@solana/spl-token';
 import wallet from "../wba-wallet.json"
 
 // Import our keypair from the wallet file
@@ -12,7 +12,9 @@ const connection = new Connection("https://api.devnet.solana.com", commitment);
 (async () => {
     try {
         // Start here
-        // const mint = ???
+        const mint = await createMint(connection, keypair, keypair.publicKey, null, 10);
+        console.log(`Mint created: ${mint.toBase58()}`);
+
     } catch(error) {
         console.log(`Oops, something went wrong: ${error}`)
     }
