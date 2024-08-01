@@ -14,13 +14,22 @@ umi.use(signerIdentity(myKeypairSigner));
 umi.use(mplTokenMetadata())
 
 const mint = generateSigner(umi);
+const metadataUrl = "https://arweave.net/hF74Db3UPIIQ8D7CI9z6bWTcf0mgut2cV46UmMasrhM";
 
 (async () => {
-    // let tx = ???
-    // let result = await tx.sendAndConfirm(umi);
-    // const signature = base58.encode(result.signature);
+    let tx = createNft(umi, {
+        name: "My NFT",
+        mint: mint,
+        authority: myKeypairSigner,
+        sellerFeeBasisPoints: percentAmount(5),
+        isCollection : false,
+        uri: metadataUrl,
+    });
+
+    let result = await tx.sendAndConfirm(umi);
+    const signature = base58.encode(result.signature);
     
-    // console.log(`Succesfully Minted! Check out your TX here:\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`)
+    console.log(`Succesfully Minted! Check out your TX here:\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`)
 
     console.log("Mint Address: ", mint.publicKey);
 })();
