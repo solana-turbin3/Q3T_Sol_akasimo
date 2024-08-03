@@ -14,11 +14,12 @@ umi.use(signerIdentity(myKeypairSigner));
 umi.use(mplTokenMetadata())
 
 const mint = generateSigner(umi);
-const metadataUrl = "https://arweave.net/hF74Db3UPIIQ8D7CI9z6bWTcf0mgut2cV46UmMasrhM";
+const metadataUrl = "https://arweave.net/4FbrVgSeuCfBfOIzm9MGgsq1C1eP9LKq5hkwP62Eoqw";
 
 (async () => {
     let tx = createNft(umi, {
-        name: "My NFT",
+        name: "Rug Paper",
+        symbol: "RUGP",
         mint: mint,
         authority: myKeypairSigner,
         sellerFeeBasisPoints: percentAmount(5),

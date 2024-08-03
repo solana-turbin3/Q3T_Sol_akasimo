@@ -22,12 +22,12 @@ const uploader = createBundlrUploader(umi);
 
         const image = "https://arweave.net/TLa-zCELKe8UKuNiHiV39Bgkheru2cmF9JmSel3jUv8";
         const metadata = {
-            name: "Megarugedderino",
-            symbol: "MRGD",
+            name: "Rug Paper",
+            symbol: "RUGP",
             description: "?",
             image: image,
             attributes: [
-                {trait_type: 'rug type', value: 'persian'}
+                {trait_type: 'rug type', value: 'walmart rug paper'}
             ],
             properties: {
                 files: [
