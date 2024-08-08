@@ -5,10 +5,15 @@ import {
   PublicKey,
   Commitment,
 } from "@solana/web3.js";
-import { Program, Wallet, AnchorProvider, Address } from "@coral-xyz/anchor";
+import {
+  Program,
+  Wallet,
+  AnchorProvider,
+  Address,
+  BN,
+} from "@coral-xyz/anchor";
 import { WbaVault, IDL } from "./programs/wba_vault";
 import wallet from "./wallet/wba-wallet.json";
-/// J8qKEmQpadFeBuXAVseH8GNrvsyBhMT8MHSVD3enRgJz
 
 // Import our keypair from the wallet file
 const keypair = Keypair.fromSecretKey(new Uint8Array(wallet));
@@ -32,26 +37,37 @@ const program = new Program<WbaVault>(
 );
 
 // Create a random keypair
-const vaultState = Keypair.generate();
-console.log(`Vault public key: ${vaultState.publicKey.toBase58()}`);
-
+const vaultState = new PublicKey("BHbE7AQhDCsq11fjUTeLeYZTfkmeWpg2LKNMehLafjpE");
 // Create the PDA for our enrollment account
 // Seeds are "auth", vaultState
-// const vaultAuth = ???
+const vaultAuth = [Buffer.from("auth"), vaultState.toBuffer()];
+const [vaultAuthPda, _vaultAuthBump] = PublicKey.findProgramAddressSync(vaultAuth, program.programId);
 
 // Create the vault key
 // Seeds are "vault", vaultAuth
-// const vault = ???
+const vault = [Buffer.from("vault"), Buffer.from(vaultAuthPda.toBuffer())];
+const [vaultPda, _vaultBump] = PublicKey.findProgramAddressSync(vault, program.programId);
+
 
 // Execute our enrollment transaction
 (async () => {
   try {
-    // const signature = await program.methods.initialize()
+    // const signature = await program.methods
+    // .withdraw(new BN(<number>))
     // .accounts({
     //     ???
-    // }).signers([keypair, vaultState]).rpc();
-    // console.log(`Init success! Check out your TX here:\n\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`);
+    // })
+    // .signers([
+    //     keypair
+    // ]).rpc();
+    // console.log(`Withdraw success! Check out your TX here:\n\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`);
+
+    // ```
+    // 
+    // ```
+
   } catch (e) {
     console.error(`Oops, something went wrong: ${e}`);
   }
-})();
+}
+)();

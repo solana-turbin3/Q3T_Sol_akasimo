@@ -35,23 +35,28 @@ const provider = new AnchorProvider(connection, new Wallet(keypair), {
 });
 
 // Create our program
-const program = new Program<WbaVault>(IDL, "<address>" as Address, provider);
+const program = new Program<WbaVault>(
+  IDL,
+  "D51uEDHLbWAxNfodfQDv7qkp8WZtxrhi3uganGbNos7o" as Address,
+  provider,
+);
 
 // Create a random keypair
-const vaultState = new PublicKey("<address>");
+const vaultState = new PublicKey("BHbE7AQhDCsq11fjUTeLeYZTfkmeWpg2LKNMehLafjpE");
 
 // Create the PDA for our enrollment account
-// Seeds are "auth", vaultState
-// const vaultAuth = ???
+const vaultAuth = [Buffer.from("auth"), vaultState.toBuffer()];
+const [vaultAuthPda, _vaultAuthBump] = PublicKey.findProgramAddressSync(vaultAuth, program.programId);
 
 // Create the vault key
-// Seeds are "vault", vaultAuth
-// const vault = ???
+const vault = [Buffer.from("vault"), Buffer.from(vaultAuthPda.toBuffer())];
+const [vaultPda, _vaultBump] = PublicKey.findProgramAddressSync(vault, program.programId);
+
 
 // Mint address
 const mint = new PublicKey("<address>");
 
-// Execute our enrollment transaction
+// Execute our deposit transaction
 (async () => {
   try {
     const metadataProgram = new PublicKey(
@@ -71,25 +76,31 @@ const mint = new PublicKey("<address>");
       metadataProgram,
     )[0];
 
+    // b"metadata", MetadataProgramID.key.as_ref(), mint.key.as_ref() "master"
     // Get the token account of the fromWallet address, and if it does not exist, create it
     // const ownerAta = await getOrCreateAssociatedTokenAccount(
     //     ???
     // );
 
-    // Get the token account of the fromWallet address, and if it does not exist, create it
+    // // Get the token account of the fromWallet address, and if it does not exist, create it
     // const vaultAta = await getOrCreateAssociatedTokenAccount(
     //     ???
     // );
 
     // const signature = await program.methods
-    // .withdrawNft()
+    // .depositNft()
     // .accounts({
-    //    ???
+    //     ???
     // })
     // .signers([
     //     keypair
     // ]).rpc();
     // console.log(`Deposit success! Check out your TX here:\n\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`);
+     
+    // ```
+    // 
+    // ```
+ 
   } catch (e) {
     console.error(`Oops, something went wrong: ${e}`);
   }
