@@ -1,0 +1,3 @@
+[submodule "anchor_nft_stake"]
+	path = anchor_nft_stake
+	url = https://github.com/akasimo/anchor_nft_stake
