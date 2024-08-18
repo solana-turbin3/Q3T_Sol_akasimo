@@ -4,3 +4,6 @@
 [submodule "metaplex_core_nft-staking"]
 	path = metaplex_core_nft-staking
 	url = https://github.com/akasimo/metaplex_core_nft-staking
+[submodule "anchor_escrow"]
+	path = anchor_escrow
+	url = git@github.com:akasimo/anchor_escrow.git
