@@ -1,3 +1,6 @@
 [submodule "anchor_nft_stake"]
 	path = anchor_nft_stake
 	url = https://github.com/akasimo/anchor_nft_stake
+[submodule "metaplex_core_nft-staking"]
+	path = metaplex_core_nft-staking
+	url = https://github.com/akasimo/metaplex_core_nft-staking
