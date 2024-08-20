@@ -7,3 +7,6 @@
 [submodule "anchor_escrow"]
 	path = anchor_escrow
 	url = git@github.com:akasimo/anchor_escrow.git
+[submodule "anchor_marketplace"]
+	path = anchor_marketplace
+	url = https://github.com/akasimo/anchor_marketplace
