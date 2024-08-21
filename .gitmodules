@@ -10,3 +10,6 @@
 [submodule "anchor_marketplace"]
 	path = anchor_marketplace
 	url = https://github.com/akasimo/anchor_marketplace
+[submodule "anchor_vault"]
+	path = anchor_vault
+	url = https://github.com/akasimo/anchor_vault
