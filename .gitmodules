@@ -13,3 +13,6 @@
 [submodule "anchor_vault"]
 	path = anchor_vault
 	url = https://github.com/akasimo/anchor_vault
+[submodule "fairswap"]
+	path = fairswap
+	url = https://github.com/akasimo/fairswap
