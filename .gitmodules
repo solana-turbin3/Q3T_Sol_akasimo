@@ -16,3 +16,6 @@
 [submodule "fairswap"]
 	path = fairswap
 	url = https://github.com/akasimo/fairswap
+[submodule "anchor_dice_game"]
+	path = anchor_dice_game
+	url = git@github.com:akasimo/anchor_dice_game.git
