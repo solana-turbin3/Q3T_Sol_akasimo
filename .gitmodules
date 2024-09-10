@@ -19,3 +19,6 @@
 [submodule "anchor_dice_game"]
 	path = anchor_dice_game
 	url = git@github.com:akasimo/anchor_dice_game.git
+[submodule "SolScout"]
+	path = SolScout
+	url = git@github.com:akasimo/SolScout.git
